@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 interface Superhero {
-  id: string
+  id: string;
   name: string;
   superpower: string;
   humilityScore: number;
@@ -16,9 +16,11 @@ function App() {
   });
 
   const updateSuperheroes = (prevHeroes: Superhero[], newHero: Superhero) => {
-    return prevHeroes.some(hero => hero.id === newHero.id)
-      ? [...prevHeroes].sort()
-      : [...prevHeroes, newHero].sort();
+    const updatedHeroes = prevHeroes.some((hero) => hero.id === newHero.id)
+      ? [...prevHeroes]
+      : [...prevHeroes, newHero];
+
+    return updatedHeroes.sort((a, b) => b.humilityScore - a.humilityScore);
   };
 
   useEffect(() => {
@@ -32,7 +34,7 @@ function App() {
 
     ws.onmessage = (event) => {
       const newSuperhero: Superhero = JSON.parse(event.data);
-      setSuperheroes(prevHeroes =>
+      setSuperheroes((prevHeroes) =>
         updateSuperheroes(prevHeroes, newSuperhero)
       );
     };
@@ -62,7 +64,7 @@ function App() {
 
       if (response.ok) {
         const addedSuperhero = await response.json();
-        setSuperheroes(prevHeroes =>
+        setSuperheroes((prevHeroes) =>
           updateSuperheroes(prevHeroes, addedSuperhero.superhero)
         );
         setNewHero({ name: "", superpower: "", humilityScore: 1 });
