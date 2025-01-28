@@ -1,6 +1,8 @@
 import express, { Router } from "express";
 import { SuperheroValidator } from "../model/superhero";
 import { superheroes } from "../app";
+import { broadcast } from "../server";
+import {v4 as uuidv4} from "uuid"
 
 const router = Router();
 
@@ -20,11 +22,12 @@ router.post("/superheroes", (req, res) => {
        details: result.error.details.map((detail) => detail.message),
      });
    }
- 
-   superheroes.push(result.value);
+   const newSuperhero = { id: uuidv4(), createdAt: new Date().toISOString(), ...result.value };
+   superheroes.push(newSuperhero);
+   broadcast(JSON.stringify(newSuperhero));
    res.status(201).json({
      message: "Superhero added successfully!",
-     superhero: result.value,
+     superhero: newSuperhero,
    });
   });
   

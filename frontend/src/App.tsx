@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 interface Superhero {
+  id: string
   name: string;
   superpower: string;
   humilityScore: number;
@@ -14,12 +15,31 @@ function App() {
     humilityScore: 1,
   });
 
+  const updateSuperheroes = (prevHeroes: Superhero[], newHero: Superhero) => {
+    return prevHeroes.some(hero => hero.id === newHero.id)
+      ? [...prevHeroes].sort()
+      : [...prevHeroes, newHero].sort();
+  };
+
   useEffect(() => {
     console.log("Fetching existing superheroes");
     fetch("http://localhost:5000/superheroes")
       .then((response) => response.json())
       .then((data) => setSuperheroes(data))
       .catch((error) => console.error("Error fetching superheroes:", error));
+
+    const ws = new WebSocket("ws://localhost:5000");
+
+    ws.onmessage = (event) => {
+      const newSuperhero: Superhero = JSON.parse(event.data);
+      setSuperheroes(prevHeroes =>
+        updateSuperheroes(prevHeroes, newSuperhero)
+      );
+    };
+
+    return () => {
+      ws.close();
+    };
   }, []);
 
   const handleInputChange = (
@@ -42,8 +62,8 @@ function App() {
 
       if (response.ok) {
         const addedSuperhero = await response.json();
-        setSuperheroes((prevHeroes) =>
-          [...prevHeroes, addedSuperhero.superhero].sort()
+        setSuperheroes(prevHeroes =>
+          updateSuperheroes(prevHeroes, addedSuperhero.superhero)
         );
         setNewHero({ name: "", superpower: "", humilityScore: 1 });
       } else {
