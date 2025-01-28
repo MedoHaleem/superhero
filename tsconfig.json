@@ -5,5 +5,7 @@
         "outDir": "dist",
         "allowJs": true
     },
-    "include": ["src/**/*", "src/jest.config.js"]
+    "include": [
+        "src/**/*"
+    ]
 }

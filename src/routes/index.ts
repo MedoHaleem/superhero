@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 import { SuperheroValidator } from "../model/superhero";
-import { superheroes } from "../server";
+import { superheroes } from "../app";
 
 const router = Router();
 

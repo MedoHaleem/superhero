@@ -6,7 +6,7 @@
     "start": "tsc-watch --noClear --onsuccess \"node dist/server.js\"",
     "server:build": "tsc --project tsconfig.server.json",
     "server:start": "node dist/server.js",
-    "test": "jest --watchAll"
+    "test": "jest"
   },
   "keywords": [
     "superhero",
