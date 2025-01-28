@@ -1,42 +1,100 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f9ff;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;    /* Center vertically */
+  min-height: 100vh;      /* Full viewport height */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Remove any margin from the main container to allow full-centering */
+.container {
+  width: 100%;
+  max-width: 800px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.card, .form-container, .list-container {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card {
-  padding: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card button {
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 15px;
+  margin-top: 10px;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.card button:hover {
+  background-color: #21a1f6;
+}
+
+.form-container, .list-container h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+input[type="text"], input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  display: block;
+  width: fit-content;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-top: 15px;
+  background-color: #5cb85c;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #449d44;
+}
+
+.list-container div {
+  padding: 8px;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .read-the-docs {
+  font-size: 14px;
   color: #888;
+}
+
+.logo {
+  height: 50px;
+  margin-right: 10px;
 }
