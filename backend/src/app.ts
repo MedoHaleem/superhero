@@ -5,7 +5,7 @@ import express from "express";
 
 const app = express();
 let superheroes: Superhero[] = [];
-app.use(middleware("*"));
+app.use(middleware("http://localhost:5173"));
 app.use(express.json());
 app.use(routes);
 

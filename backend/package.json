@@ -1,0 +1,38 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "tsc-watch --noClear --onsuccess \"node dist/server.js\"",
+    "server:build": "tsc --project tsconfig.server.json",
+    "server:start": "node dist/server.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "superhero",
+    "typescript",
+    "node"
+  ],
+  "author": "Medo Haleem <medo.a.haleem@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.17.16",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "nodemon": "^2.0.22",
+    "tsc-watch": "^6.2.1",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.14",
+    "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5"
+  },
+  "description": ""
+}
